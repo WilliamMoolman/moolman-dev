@@ -1,0 +1,29 @@
+name: Run unit tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        go-version: [1.13.x, 1.14.x]
+        platform: [ubuntu-latest]
+    runs-on: ${{ matrix.platform }}
+    steps:
+
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: ${{ matrix.go-version }}
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install RichGo
+        run: go get -u github.com/kyoh86/richgo
+
+      - name: Test
+        run: richgo test -v -cover ./...
+        env:
+          RICHGO_FORCE_COLOR: 1
+          ENV: test

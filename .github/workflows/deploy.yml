@@ -1,0 +1,31 @@
+on:
+  push:
+    tags:
+      - 'v*'
+
+name: Deploy to Production
+
+jobs:
+  build-deploy-server:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set env
+        run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF#refs/*/}
+
+      - name: Change version
+        run: |
+          sed -i app-prod.yaml -e "s/__RELEASE__/$RELEASE_VERSION/"
+
+      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: '290.0.1'
+          project_id: ${{ secrets.PROJECT_ID }}
+          service_account_key: ${{ secrets.GCP_PROD_CREDENTIALS}}
+
+      - name: Deploy
+        run: |
+          gcloud --quiet app deploy app-prod.yaml --project ${{ secrets.PROJECT_ID }} --version $(echo $RELEASE_VERSION | sed "s/\./-/g") --no-promote

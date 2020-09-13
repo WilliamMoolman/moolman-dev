@@ -1,13 +1,29 @@
 package main
 
 import (
+	"html/template"
+	"io"
+	"net/http"
+
+	"github.com/WilliamMoolman/moolman-dev/lib/controllers"
 	"github.com/facktoreal/env"
 
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
-
-	sentryEcho "github.com/getsentry/sentry-go/echo"
 )
+
+// TemplateRenderer ...
+type TemplateRenderer struct {
+	templates *template.Template
+}
+
+// Render ...
+func (t *TemplateRenderer) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
+	if viewContext, isMap := data.(map[string]interface{}); isMap {
+		viewContext["reverse"] = c.Echo().Reverse
+	}
+	return t.templates.ExecuteTemplate(w, name, data)
+}
 
 func main() {
 	e := echo.New()
@@ -32,16 +48,18 @@ func main() {
 		AllowMethods: []string{echo.GET, echo.PUT, echo.PATCH, echo.POST, echo.DELETE},
 	}))
 	e.Pre(middleware.RemoveTrailingSlash())
-	e.File("/", "public/index.html")
 
-	// Once it's done, you can attach the handler as one of your middleware
-	e.Use(sentryEcho.New(sentryEcho.Options{Repanic: true}))
-
-	// Services
-	var ()
+	// Templates
+	renderer := &TemplateRenderer{
+		templates: template.Must(template.ParseGlob("public/views/*.html")),
+	}
+	e.Renderer = renderer
 
 	// Core endpoints
-	//controllers.NewHealthController(db).Routes(e.Group("api"))
+	controllers.NewTemplateController().Routes(e.Group(""))
+	fs := http.FileServer(http.Dir("public"))
+	e.GET("/public/*", echo.WrapHandler(http.StripPrefix("/public/", fs)))
+	e.File("/", "public/index.html")
 
 	e.Logger.Infof("Server started, v%s | port: %s", echo.Version, port)
 

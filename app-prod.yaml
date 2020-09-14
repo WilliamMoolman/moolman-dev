@@ -15,7 +15,7 @@ env_variables:
 
 handlers:
 
-  - url: /(.*)
+  - url: /public
     static_dir: public
     secure: always
 

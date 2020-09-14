@@ -15,7 +15,7 @@ env_variables:
 
 handlers:
 
-  - url: /(.*\.(gif|png|jpg|js|css|map|ttf|woff|eot|svg))$
+  - url: /(.*)
     static_dir: public
     secure: always
 

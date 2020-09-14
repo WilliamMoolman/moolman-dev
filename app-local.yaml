@@ -9,7 +9,7 @@ env_variables:
   RELEASE: __RELEASE__
   APP_NAME: site
   ENV_LOCATION: europe-west1
-  PUBLIC_HOSTNAME: http://v2.vegetation.io
+  PUBLIC_HOSTNAME: http:///moolman.dev
   GOOGLE_CLOUD_PROJECT: personal-278509 
   PUBLIC_URL: https://moolman.dev
 

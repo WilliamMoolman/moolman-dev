@@ -24,7 +24,7 @@ jobs:
         with:
           version: '290.0.1'
           project_id: ${{ secrets.PROJECT_ID }}
-          service_account_key: ${{ secrets.GCP_PROD_CREDENTIALS}}
+          service_account_key: ${{ secrets.APP_ENGINE_KEY}}
 
       - name: Deploy
         run: |

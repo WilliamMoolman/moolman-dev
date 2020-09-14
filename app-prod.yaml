@@ -14,14 +14,19 @@ env_variables:
   PUBLIC_URL: https://moolman.dev
 
 handlers:
-  - url: /workers/.*
-    script: auto
+    - url: /(.*\.(gif|png|jpg|js|css|map|ttf|woff|eot|svg))$
+    static_files: public/\1
+    upload: public/(.*\.(gif|png|jpg|js|css|map|ttf|woff|eot|svg))$
+    secure: always
 
-  - url: /cron/.*
-    script: auto
+  - url: /
+    static_files: public/index.html
+    upload: public/index.html
+    secure: always
 
-  - url: /api/.*
-    script: auto
+  - url: /(.*)
+    static_files: public/index.html
+    upload: public/index.html
     secure: always
 
 automatic_scaling:

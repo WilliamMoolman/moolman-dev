@@ -17,7 +17,6 @@ handlers:
 
   - url: /(.*\.(gif|png|jpg|js|css|map|ttf|woff|eot|svg))$
     static_dir: public
-    upload: public/(.*\.(gif|png|jpg|js|css|map|ttf|woff|eot|svg))$
     secure: always
 
   - url: /

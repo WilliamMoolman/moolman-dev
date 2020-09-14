@@ -14,6 +14,7 @@ env_variables:
   PUBLIC_URL: https://moolman.dev
 
 handlers:
+
     - url: /(.*\.(gif|png|jpg|js|css|map|ttf|woff|eot|svg))$
     static_files: public/\1
     upload: public/(.*\.(gif|png|jpg|js|css|map|ttf|woff|eot|svg))$

@@ -16,8 +16,8 @@ env_variables:
 handlers:
 
   - url: /(.*\.(gif|png|jpg|js|css|map|ttf|woff|eot|svg))$
-    static_files: public/\1
-    upload: public/(.*\.(gif|png|jpg|js|css|map|ttf|woff|eot|svg))$
+    static_files: public/assets/images\1
+    upload: public/assets/images/(.*\.(gif|png|jpg|js|css|map|ttf|woff|eot|svg))$
     secure: always
 
   - url: /

@@ -24,7 +24,7 @@ jobs:
           
       - name: Change version
         run: |
-          sed -i app-prod.yaml -e "s/__RELEASE__/$RELEASE_VERSION/"
+          sed -i app.yaml -e "s/__RELEASE__/$RELEASE_VERSION/"
 
       - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
         with:
@@ -34,4 +34,4 @@ jobs:
 
       - name: Deploy
         run: |
-          gcloud --quiet app deploy app-prod.yaml --project ${{ secrets.PROJECT_ID }} --version $(echo $RELEASE_VERSION | sed "s/\./-/g") --no-promote
+          gcloud --quiet app deploy app\.yaml --project ${{ secrets.PROJECT_ID }} --version $(echo $RELEASE_VERSION | sed "s/\./-/g") --no-promote

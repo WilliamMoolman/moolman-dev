@@ -13,7 +13,7 @@ fmt:
 	done;
 
 deploy:
-	@gcloud app deploy app-prod.yaml --project personal-278509
+	@gcloud app deploy app.yaml --project personal-278509
 
 test:
 	@RICHGO_FORCE_COLOR=1 ENV=test richgo test -v -mod=vendor -cover ./...

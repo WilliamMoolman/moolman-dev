@@ -57,6 +57,7 @@ func main() {
 
 	// Core endpoints
 	controllers.NewTemplateController().Routes(e.Group(""))
+	controllers.NewCircuitController().Routes(e.Group(""))
 	fs := http.FileServer(http.Dir("public"))
 	e.GET("/public/*", echo.WrapHandler(http.StripPrefix("/public/", fs)))
 	e.File("/", "public/index.html")

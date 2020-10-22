@@ -1,0 +1,37 @@
+{{define "laundry"}}
+<html>
+    <head>
+        <title>Laundry Status</title>
+        <style>
+            table, th, td {
+                border: 2px solid black;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding-top: 8px;
+                padding-bottom: 8px;
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Grant House:</h1>
+        <table>
+            <tr>
+                <th>Machine</th>
+                <th>Avaliable</th>
+            </tr>
+            <tr>
+                <td>Washing</td>
+                <td>{{.Washing}}</td>
+            </tr>
+            <tr>
+                <td>Drying</td>
+                <td>{{.Drying}}</td>
+            </tr>
+        </table>
+        <p style="font-size: xx-small;">If anyone who actually can do front end wants to fix this sad page, please do</p>
+    </body>
+</html>
+{{end}}

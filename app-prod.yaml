@@ -27,6 +27,7 @@ handlers:
   - url: /(.*)
     static_files: public/views\1
     upload: public/views/(.*)
+    script: auto
     secure: always
 
 automatic_scaling:

@@ -12,6 +12,8 @@ env_variables:
   PUBLIC_HOSTNAME: http:///moolman.dev
   GOOGLE_CLOUD_PROJECT: personal-278509 
   PUBLIC_URL: https://moolman.dev
+  TELEGRAM_CHAT_ID: $TELEGRAM_CHAT_ID
+  TELEGRAM_BOT_API_KEY: $TELEGRAM_BOT_API_KEY
 
 handlers:
 

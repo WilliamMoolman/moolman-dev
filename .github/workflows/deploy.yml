@@ -15,7 +15,13 @@ jobs:
 
       - name: Set env
         run: echo ::set-env name=RELEASE_VERSION::${GITHUB_REF#refs/*/}
-
+      
+      - name: GAE environment variable compiler
+        uses: ikuanyshbekov/app-yaml-env-compiler@v1.1
+        env:
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_BOT_API_KEY: ${{ secrets.TELEGRAM_BOT_API_KEY }}
+          
       - name: Change version
         run: |
           sed -i app-prod.yaml -e "s/__RELEASE__/$RELEASE_VERSION/"

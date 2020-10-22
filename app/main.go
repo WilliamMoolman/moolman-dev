@@ -58,6 +58,8 @@ func main() {
 	// Core endpoints
 	controllers.NewTemplateController().Routes(e.Group(""))
 	controllers.NewCircuitController().Routes(e.Group(""))
+	controllers.NewCycleController().Routes(e.Group(""))
+	controllers.NewTelegramController().Routes(e.Group("api"))
 	fs := http.FileServer(http.Dir("public"))
 	e.GET("/public/*", echo.WrapHandler(http.StripPrefix("/public/", fs)))
 	e.File("/", "public/index.html")

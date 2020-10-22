@@ -44,8 +44,6 @@ func (ctl *circuitController) Laundry(c echo.Context) error {
 	}
 	defer response.Body.Close()
 	z := html.NewTokenizer(response.Body)
-
-	l.Info(response.Body)
 	end := false
 	washers := "n/a"
 	dryers := "n/a"

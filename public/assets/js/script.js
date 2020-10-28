@@ -38,4 +38,26 @@ $(document).ready(function () {
             }
         }, ]
     });
+
+    $("#send-form").submit(function(e) {
+ 
+        e.preventDefault();
+        var dataString = $(this).serialize();
+
+        $.ajax({
+          type: "GET",
+          url: "api/message",
+          data: dataString,
+          success: function () {
+            $("#send-div").html("<div id='message'></div>");
+            $("#message")
+              .html("<h2 class='white fs-m2 fw-700'><i>Message Sent!</i></h2><i data-feather='check' class='w-l5'></i>")
+              .hide()
+              .fadeIn(1500);
+          }
+        });
+     
+        return false;
+    });
+      
 });

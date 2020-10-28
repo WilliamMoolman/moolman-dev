@@ -78,14 +78,13 @@
                 <p class="white fs-s8 fw-300">Add some contact details if you want</p>
             </div>
             <div class="w-100pc md-w-50pc">
-                <div class="flex my-5">
-                    <iframe name="hiddenFrame" width="0" height="0" border="0" style="display: none;"></iframe>
-                    <form id="sendform" action="api/message" target="hiddenFrame" method="get">
-                        <input type="text"
+                <div id="send-div" class="flex my-5">
+                    <form id="send-form" name="send-form" action="">
+                        <input id="message" type="text"
                             name="message"
                             class="input-lg flex-grow-1 bw-0 fw-200 bg-indigo-lightest-10 white ph-indigo-lightest focus-white opacity-80 fs-s3 py-5 br-r-0"
-                            placeholder="Message...">
-                        <button type="submit" class="button-lg bg-indigo indigo-lightest fw-300 fs-s3 br-l-0">Send</button>
+                            placeholder="Message..." required>
+                        <button type="submit" name="submit" id="submit_btn" class="button-lg bg-indigo indigo-lightest fw-300 fs-s3 br-l-0">Send</button>
                     </form>
                 </div>
             </div>
